@@ -1,17 +1,33 @@
 import type { Action, State } from "../types";
 
 const reducer = (state: State, action: Action): State => {
-  const actions = {
-    SWAP_ITEMS: {
-      items: state.items.map((item) =>
-        item.id === action.payload.id
-          ? { ...item, x: action.payload.x, y: action.payload.y }
-          : item
-      ),
-    },
-  };
+  switch (action.type) {
+    case "SWAP_ITEMS": {
+      const { idA, idB } = action.payload;
 
-  return actions[action.type] ?? state;
+      const itemA = state.items.find((it) => it.id === idA);
+      const itemB = state.items.find((it) => it.id === idB);
+      if (!itemA || !itemB) {
+        return state;
+      }
+
+      return {
+        ...state,
+        items: state.items.map((item) => {
+          if (item.id === idA) {
+            return { ...item, x: itemB.x, y: itemB.y };
+          }
+          if (item.id === idB) {
+            return { ...item, x: itemA.x, y: itemA.y };
+          }
+          return item;
+        }),
+      };
+    }
+
+    default:
+      return state;
+  }
 };
 
 export default reducer;
