@@ -15,6 +15,7 @@ const createGrid = (initialMatrix: GridMatrix) => {
     store.dispatch({ type: "SWAP_ITEMS", payload: { idA, idB } });
 
   const getMatrix = () => toMatrix(store.getState().items, rows, cols);
+  const emitter = new EventTarget();
 
   const attachDnd = (el: HTMLElement, id: string) => {
     let dragging = false;
@@ -40,6 +41,8 @@ const createGrid = (initialMatrix: GridMatrix) => {
       if (dropId && dropId !== id) {
         // swap만 하면 되므로 offset 계산 불필요
         swapItem(id, dropId);
+        console.log(getMatrix());
+        emitter.dispatchEvent(new CustomEvent("grid-change"));
       }
     };
 
@@ -47,7 +50,7 @@ const createGrid = (initialMatrix: GridMatrix) => {
     return () => el.removeEventListener("pointerdown", onPointerDown);
   };
 
-  return { getMatrix, attachDnd };
+  return { getMatrix, attachDnd, emitter };
 };
 
 export default createGrid;

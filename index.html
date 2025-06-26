@@ -1,13 +1,38 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + TS</title>
+    <style>
+      .grid-container {
+        position: relative;
+        width: 500px;
+        height: 500px;
+        border: 1px solid #ccc;
+      }
+      .grid-item {
+        position: absolute;
+        background: #e3e3e3;
+        border: 1px solid #999;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: grab;
+        user-select: none;
+        touch-action: none;
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <body>
+        <div id="grid" class="grid-container"></div>
+        <script type="module" src="main.js"></script>
+      </body>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
