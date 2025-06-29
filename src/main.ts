@@ -1,5 +1,3 @@
-// main.js
-
 import createGrid from ".";
 
 const initialMatrix = [
@@ -14,9 +12,9 @@ const initialMatrix = [
   ],
 ];
 
-const CELL_SIZE = 100; // 한 셀당 픽셀 크기
+const CELL_SIZE = 100;
 
-const { getMatrix, attachDnd, emitter } = createGrid(initialMatrix);
+const { getMatrix, attachDnd, subscribe } = createGrid(initialMatrix);
 const container = document.getElementById("grid");
 
 function render() {
@@ -36,14 +34,9 @@ function render() {
 
       container.appendChild(el);
 
-      // 드래그 앤 드롭 기능 연결
       attachDnd(el, cell.id);
-      // 드롭 후 상태가 바뀌면 다시 렌더링
-      // el.addEventListener("pointerup", render);
     });
-  console.log(getMatrix());
 }
-emitter.addEventListener("grid-change", render);
+const unsubscribe = subscribe(render);
 
-// 최초 렌더링
 render();

@@ -9,13 +9,27 @@ const createGrid = (initialMatrix: GridMatrix) => {
   const flatItems: GridItem[] = initialMatrix
     .flat()
     .filter((cell): cell is GridItem => cell !== null);
+
   const store = createStore({ items: flatItems });
 
-  const swapItem = (idA: string, idB: string) =>
+  const listeners: Array<() => void> = [];
+
+  const subscribe = (fn: () => void) => {
+    listeners.push(fn);
+    return () => {
+      const idx = listeners.indexOf(fn);
+      if (idx >= 0) listeners.splice(idx, 1);
+    }
+  }
+
+  const notify = () => listeners.forEach(fn => fn());
+
+  const swapItem = (idA: string, idB: string) => {
     store.dispatch({ type: "SWAP_ITEMS", payload: { idA, idB } });
+    notify();
+  };
 
   const getMatrix = () => toMatrix(store.getState().items, rows, cols);
-  const emitter = new EventTarget();
 
   const attachDnd = (el: HTMLElement, id: string) => {
     let dragging = false;
@@ -23,7 +37,6 @@ const createGrid = (initialMatrix: GridMatrix) => {
     const onPointerDown = (e: PointerEvent) => {
       dragging = true;
       el.setPointerCapture(e.pointerId);
-      // 이후 포인터만 잡아두면 됨
       el.addEventListener("pointerup", onPointerUp);
     };
 
@@ -32,17 +45,13 @@ const createGrid = (initialMatrix: GridMatrix) => {
       el.releasePointerCapture(e.pointerId);
       el.removeEventListener("pointerup", onPointerUp);
 
-      // 드롭 시점에 포인터 아래 셀을 감지
       const under = document
         .elementFromPoint(e.clientX, e.clientY)
         ?.closest<HTMLElement>("[data-id]");
       const dropId = under?.dataset.id;
 
       if (dropId && dropId !== id) {
-        // swap만 하면 되므로 offset 계산 불필요
         swapItem(id, dropId);
-        console.log(getMatrix());
-        emitter.dispatchEvent(new CustomEvent("grid-change"));
       }
     };
 
@@ -50,7 +59,7 @@ const createGrid = (initialMatrix: GridMatrix) => {
     return () => el.removeEventListener("pointerdown", onPointerDown);
   };
 
-  return { getMatrix, attachDnd, emitter };
+  return { getMatrix, attachDnd, subscribe };
 };
 
 export default createGrid;
