@@ -59,7 +59,7 @@ const createGrid = (initialMatrix: GridMatrix) => {
     return () => el.removeEventListener("pointerdown", onPointerDown);
   };
 
-  return { getMatrix, attachDnd, subscribe };
+  return { getMatrix, attachDnd, subscribe, swapItem};
 };
 
 export default createGrid;
