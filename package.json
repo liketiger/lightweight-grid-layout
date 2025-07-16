@@ -1,7 +1,7 @@
 {
   "name": "light-weight-grid-layout",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A headless light-weight grid layout for JS Environment",
   "keywords": [
     "javascript",
