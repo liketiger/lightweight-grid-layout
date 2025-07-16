@@ -2,19 +2,45 @@
   "name": "light-weight-grid-layout",
   "private": true,
   "version": "0.0.0",
+  "description": "A headless light-weight grid layout for JS Environment",
+  "keywords": [
+    "javascript",
+    "typescript",
+    "grid",
+    "layout"
+  ],
+  "homepage": "https://github.com/liketiger/lightweight-grid-layout",
+  "bugs": {
+    "url": "https://github.com/liketiger/lightweight-grid-layout/issues"
+  },
+  "author": "Sung-jae Hwang <edx2ice@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liketiger/lightweight-grid-layout.git"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vitest",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "ci": "npm run build && npm run check-format && npm run test",
+    "format": "prettier --write",
+    "check-format": "prettier --check"
   },
   "devDependencies": {
     "@vitest/ui": "^3.2.4",
     "happy-dom": "^18.0.1",
     "jsdom": "^26.1.0",
+    "prettier": "^3.6.2",
     "typescript": "~5.8.3",
     "vite": "^6.3.5",
     "vitest": "^3.2.4"
-  }
+  },
+  "license": "MIT"
 }
