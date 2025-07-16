@@ -31,9 +31,12 @@
     "test": "vitest",
     "ci": "npm run build && npm run check-format && npm run test",
     "format": "prettier --write",
-    "check-format": "prettier --check"
+    "check-format": "prettier --check",
+    "local-release": "changeset version && changeset publish",
+    "prepublishOnly": "npm run ci"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.29.5",
     "@vitest/ui": "^3.2.4",
     "happy-dom": "^18.0.1",
     "jsdom": "^26.1.0",
