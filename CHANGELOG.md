@@ -1,5 +1,11 @@
 # light-weight-grid-layout
 
+## 0.0.3
+
+### Patch Changes
+
+- 17c718f: initial release
+
 ## 0.0.2
 
 ### Patch Changes
