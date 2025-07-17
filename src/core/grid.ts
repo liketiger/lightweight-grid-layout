@@ -1,7 +1,6 @@
-import type { GridItem, GridMatrix } from "../types";
-import { toMatrix } from "../utils";
-import createStore from "./redux";
-
+import type { GridItem, GridMatrix } from '../types';
+import { toMatrix } from '../utils';
+import createStore from './redux';
 
 const createGrid = (initialMatrix: GridMatrix) => {
   const rows = initialMatrix.length;
@@ -20,13 +19,13 @@ const createGrid = (initialMatrix: GridMatrix) => {
     return () => {
       const idx = listeners.indexOf(fn);
       if (idx >= 0) listeners.splice(idx, 1);
-    }
-  }
+    };
+  };
 
-  const notify = () => listeners.forEach(fn => fn());
+  const notify = () => listeners.forEach((fn) => fn());
 
   const swapItem = (idA: string, idB: string) => {
-    store.dispatch({ type: "SWAP_ITEMS", payload: { idA, idB } });
+    store.dispatch({ type: 'SWAP_ITEMS', payload: { idA, idB } });
     notify();
   };
 
@@ -38,17 +37,17 @@ const createGrid = (initialMatrix: GridMatrix) => {
     const onPointerDown = (e: PointerEvent) => {
       dragging = true;
       el.setPointerCapture(e.pointerId);
-      el.addEventListener("pointerup", onPointerUp);
+      el.addEventListener('pointerup', onPointerUp);
     };
 
     const onPointerUp = (e: PointerEvent) => {
       dragging = false;
       el.releasePointerCapture(e.pointerId);
-      el.removeEventListener("pointerup", onPointerUp);
+      el.removeEventListener('pointerup', onPointerUp);
 
       const under = document
         .elementFromPoint(e.clientX, e.clientY)
-        ?.closest<HTMLElement>("[data-id]");
+        ?.closest<HTMLElement>('[data-id]');
       const dropId = under?.dataset.id;
 
       if (dropId && dropId !== id) {
@@ -56,11 +55,11 @@ const createGrid = (initialMatrix: GridMatrix) => {
       }
     };
 
-    el.addEventListener("pointerdown", onPointerDown);
-    return () => el.removeEventListener("pointerdown", onPointerDown);
+    el.addEventListener('pointerdown', onPointerDown);
+    return () => el.removeEventListener('pointerdown', onPointerDown);
   };
 
-  return { getMatrix, attachDnd, subscribe, swapItem};
+  return { getMatrix, attachDnd, subscribe, swapItem };
 };
 
 export default createGrid;

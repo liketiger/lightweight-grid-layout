@@ -1,5 +1,5 @@
-import type { Action, State } from "../types";
-import reducer from "./reducer";
+import type { Action, State } from '../types';
+import reducer from './reducer';
 
 export default function createStore(initialState: State) {
   let state = initialState;

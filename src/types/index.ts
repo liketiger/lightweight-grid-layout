@@ -7,7 +7,7 @@ export interface GridItem {
 export type GridMatrix = GridItem[][];
 
 export type Action = {
-  type: "SWAP_ITEMS";
+  type: 'SWAP_ITEMS';
   payload: { idA: string; idB: string };
 };
 

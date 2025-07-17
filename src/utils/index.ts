@@ -1,12 +1,12 @@
-import type { GridItem, GridMatrix } from "../types";
+import type { GridItem, GridMatrix } from '../types';
 
 export const toMatrix = (
   items: GridItem[],
   rows: number,
-  cols: number
+  cols: number,
 ): GridMatrix => {
   const matrix: GridMatrix = Array.from({ length: rows }, () =>
-    Array(cols).fill(null)
+    Array(cols).fill(null),
   );
 
   items.forEach((item) => {

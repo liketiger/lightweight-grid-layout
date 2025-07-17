@@ -1,9 +1,9 @@
-import type { Action, State } from "../types";
+import type { Action, State } from '../types';
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "SWAP_ITEMS": {
-      const { idA, idB } = action.payload;      
+    case 'SWAP_ITEMS': {
+      const { idA, idB } = action.payload;
 
       const itemA = state.items.find((it) => it.id === idA);
       const itemB = state.items.find((it) => it.id === idB);

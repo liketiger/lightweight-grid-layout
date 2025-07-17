@@ -25,8 +25,12 @@ if (typeof globalThis.PointerEvent === 'undefined') {
 }
 
 // set/releasePointerCapture 폴리필
-Element.prototype.setPointerCapture = function (_: number) { /*noop*/ };
-Element.prototype.releasePointerCapture = function (_: number) { /*noop*/ };
+Element.prototype.setPointerCapture = function (_: number) {
+  /*noop*/
+};
+Element.prototype.releasePointerCapture = function (_: number) {
+  /*noop*/
+};
 
 describe('createGrid (null 없이)', () => {
   let grid: ReturnType<typeof createGrid>;
@@ -86,8 +90,12 @@ describe('createGrid (null 없이)', () => {
 
     const cleanup = grid.attachDnd(elA, 'a');
 
-    elA.dispatchEvent(new PointerEvent('pointerdown', { pointerId: 1, clientX: 0, clientY: 0 }));
-    elA.dispatchEvent(new PointerEvent('pointerup',   { pointerId: 1, clientX: 0, clientY: 0 }));
+    elA.dispatchEvent(
+      new PointerEvent('pointerdown', { pointerId: 1, clientX: 0, clientY: 0 }),
+    );
+    elA.dispatchEvent(
+      new PointerEvent('pointerup', { pointerId: 1, clientX: 0, clientY: 0 }),
+    );
 
     const after = grid.getMatrix();
     expect(after[0][0].id).toBe('d');

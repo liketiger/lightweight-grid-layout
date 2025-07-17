@@ -1,1 +1,1 @@
-export { default } from './core/grid'
+export { default } from './core/grid';
