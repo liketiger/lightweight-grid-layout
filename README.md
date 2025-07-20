@@ -5,10 +5,10 @@ It is up to library users to render and style with returned matrix.
 
 ## 📦 Features
 
-* **Zero Configuration**: Provides grid logic without external CSS or libraries.
-* **Lightweight**: Minimal dependencies for fast performance.
-* **Drag and Drop**: Swap items easily with the `attachDnd` API.
-* **Subscription & Notifications**: Separate rendering logic using `subscribe`.
+- **Zero Configuration**: Provides grid logic without external CSS or libraries.
+- **Lightweight**: Minimal dependencies for fast performance.
+- **Drag and Drop**: Swap items easily with the `attachDnd` API.
+- **Subscription & Notifications**: Separate rendering logic using `subscribe`.
 
 ## 🚀 Installation
 
@@ -21,21 +21,27 @@ yarn add light-weight-grid-layout
 ## 🔧 Usage Example
 
 ```js
-  import createGrid from 'light-weight-grid-layout';
+import createGrid from 'light-weight-grid-layout';
 
-  const initialMatrix = [
-    [ { id: 'item1', x: 0, y: 0 }, { id: 'item2', x: 1, y: 0 }, { id: 'item3', x: 2, y: 0 } ],
-    [ { id: 'item4', x: 0, y: 1 }, null, { id: 'item5', x: 2, y: 1 } ],
-  ];
+const initialMatrix = [
+  [
+    { id: 'item1', x: 0, y: 0 },
+    { id: 'item2', x: 1, y: 0 },
+    { id: 'item3', x: 2, y: 0 },
+  ],
+  [{ id: 'item4', x: 0, y: 1 }, null, { id: 'item5', x: 2, y: 1 }],
+];
 
-  const CELL_SIZE = 100;
-  const { getMatrix, attachDnd, subscribe } = createGrid(initialMatrix);
-  const container = document.getElementById('grid'); // if there is element with id='grid'
+const CELL_SIZE = 100;
+const { getMatrix, attachDnd, subscribe } = createGrid(initialMatrix);
+const container = document.getElementById('grid'); // if there is element with id='grid'
 
-  function render() {
-    if (!container) return;
-    container.innerHTML = '';
-    getMatrix().flat().forEach(cell => {
+function render() {
+  if (!container) return;
+  container.innerHTML = '';
+  getMatrix()
+    .flat()
+    .forEach((cell) => {
       if (!cell) return;
       const el = document.createElement('div');
       el.className = 'grid-item';
@@ -55,11 +61,11 @@ yarn add light-weight-grid-layout
       container.appendChild(el);
       attachDnd(el, cell.id);
     });
-  }
+}
 
-  // Initial render and subscription
-  render();
-  subscribe(render);
+// Initial render and subscription
+render();
+subscribe(render);
 ```
 
 ## 📝 API
@@ -70,10 +76,10 @@ yarn add light-weight-grid-layout
 
 **GridMatrix Type**
 
-| Type         | Signature                              | Description                                                      |
-| ------------ | -------------------------------------- | ---------------------------------------------------------------- |
-| `GridMatrix` | `GridItem[][]`                         | GridItem 2D matrix.                                              |
-| `GridItem`   | `{ id: string, x: number, y: number }` | Id must be unique ex. 'x-y', x -> column index, y -> row index   |
+| Type         | Signature                              | Description                                                    |
+| ------------ | -------------------------------------- | -------------------------------------------------------------- |
+| `GridMatrix` | `GridItem[][]`                         | GridItem 2D matrix.                                            |
+| `GridItem`   | `{ id: string, x: number, y: number }` | Id must be unique ex. 'x-y', x -> column index, y -> row index |
 
 **Returned Methods**
 
@@ -86,11 +92,11 @@ yarn add light-weight-grid-layout
 
 ## 🛠️ Configuration
 
-* **TypeScript Support**: Includes type definitions in `dist/index.d.ts`.
-* **Bundling**: Distributed as an ES module.
-* **Peer Dependencies**: None.
+- **TypeScript Support**: Includes type definitions in `dist/index.d.ts`.
+- **Bundling**: Distributed as an ES module.
+- **Peer Dependencies**: None.
 
-## 📖 Github 
+## 📖 Github
 
 [GitHub repository](https://github.com/liketiger/lightweight-grid-layout).
 
