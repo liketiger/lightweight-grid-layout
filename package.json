@@ -23,7 +23,10 @@
   "module": "dist/lightweight-grid-layout.es.js",
   "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/lightweight-grid-layout.es.js"
+    ".": {
+      "import": "./dist/lightweight-grid-layout.es.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "type": "module",
   "scripts": {
