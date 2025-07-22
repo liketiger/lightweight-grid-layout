@@ -1,5 +1,11 @@
 # light-weight-grid-layout
 
+## 0.0.6
+
+### Patch Changes
+
+- e47e9c2: fix entry point name in package.json
+
 ## 0.0.5
 
 ### Patch Changes
