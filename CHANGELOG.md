@@ -1,5 +1,11 @@
 # light-weight-grid-layout
 
+## 0.0.8
+
+### Patch Changes
+
+- 747d26e: modify usage example of README.md
+
 ## 0.0.7
 
 ### Patch Changes
