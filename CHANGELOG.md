@@ -1,5 +1,11 @@
 # light-weight-grid-layout
 
+## 0.0.7
+
+### Patch Changes
+
+- 35aaf89: adjust entry point of index.d.ts in package.json
+
 ## 0.0.6
 
 ### Patch Changes
