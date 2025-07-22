@@ -29,14 +29,18 @@ const initialMatrix = [
     { id: 'item2', x: 1, y: 0 },
     { id: 'item3', x: 2, y: 0 },
   ],
-  [{ id: 'item4', x: 0, y: 1 }, null, { id: 'item5', x: 2, y: 1 }],
+  [
+    { id: 'item4', x: 0, y: 1 },
+    { id: 'item5', x: 2, y: 1 },
+  ],
 ];
 
 const CELL_SIZE = 100;
 const { getMatrix, attachDnd, subscribe } = createGrid(initialMatrix);
-const container = document.getElementById('grid'); // if there is element with id='grid'
 
 function render() {
+  const container = document.getElementById('grid'); // if there is element with id='grid'
+
   if (!container) return;
   container.innerHTML = '';
   getMatrix()
@@ -63,9 +67,10 @@ function render() {
     });
 }
 
-// Initial render and subscription
-render();
-subscribe(render);
+export { render, subscribe };
+
+// render();
+// subscribe(render);
 ```
 
 ## 📝 API
