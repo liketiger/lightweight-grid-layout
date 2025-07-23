@@ -22,8 +22,6 @@ yarn add light-weight-grid-layout
 
 [Live Demo](https://cheery-fenglisu-d78c7a.netlify.app)
 
-<iframe src="https://cheery-fenglisu-d78c7a.netlify.app" width="700" height="400"></iframe>
-
 ## 🔧 Usage Example
 
 ```js
