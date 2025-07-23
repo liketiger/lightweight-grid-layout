@@ -46,6 +46,8 @@ function render() {
   const container = document.getElementById('grid'); // if there is element with id='grid'
 
   if (!container) return;
+  container.style.position = 'relative';
+  container.style.margin = '50px';
   container.innerHTML = '';
   getMatrix()
     .flat()
